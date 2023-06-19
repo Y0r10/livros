@@ -18,7 +18,7 @@ class Connection {
             //lembrar de alterar os dados da base de dados
             //de acordo com o ambiente
             self::$conn = new PDO(
-                "mysql:host=mysql-server;dbname=dblivros", 
+                "mysql:host=localhost;dbname=dblivros", 
                 "root", "root", $opcoes);
         }
 

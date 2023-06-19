@@ -12,11 +12,12 @@ $conn = Connection::getConnection();
 
 if(isset($_POST['submetido'])) {
     $titulo = isset($_POST['titulo']) ? $_POST['titulo'] : null;
+    $titulo = isset($_POST['autor']) ? $_POST['autor'] : null;
     $genero = isset($_POST['genero']) ? $_POST['genero'] : null;
     $qtdPaginas = isset($_POST['qtdPaginas']) ? 
                         $_POST['qtdPaginas'] : null;
 
-    $sql = 'INSERT INTO livros (titulo, genero, qtd_paginas)' .
+    $sql = 'INSERT INTO livros (titulo, autor, genero, qtd_paginas)' .
         ' VALUES (?, ?, ?)';
     $stmt = $conn->prepare($sql);
     $stmt->execute([$titulo, $genero, $qtdPaginas]);
@@ -40,6 +41,11 @@ if(isset($_POST['submetido'])) {
     <form action="" method="POST">
         <input type="text" name="titulo" 
             placeholder="Informe o título" />
+
+        <br><br>
+
+        <input type="text" name="autor" 
+            placeholder="Informe o autor" />
 
         <br><br>
 
@@ -77,6 +83,7 @@ if(isset($_POST['submetido'])) {
         <tr>
             <td>ID</td>
             <td>Título</td>
+            <td>Autor</td>
             <td>Gênero</td>
             <td>Páginas</td>
             <td></td>
@@ -86,6 +93,7 @@ if(isset($_POST['submetido'])) {
             <tr>
                 <td> <?php echo $reg['id'] ?> </td>
                 <td> <?php echo $reg['titulo'] ?> </td>
+                <td> <?php echo $reg['autor'] ?> </td>
                 <td> 
                 <?php 
                     switch($reg['genero']) {
